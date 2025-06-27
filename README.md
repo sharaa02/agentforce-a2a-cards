@@ -16,13 +16,13 @@ The agents collaborate to guide customers through HVAC product selection, quote 
 - Evaluates customer profiles (purchase history, LTV, sentiment) to determine quote-readiness.
 - Recommends HVAC products based on environmental and budget preferences.
 - Generates a quote and offers to route the customer to financing if needed.
-- Hosted at: `https://in12345-dev-ed.develop.my.salesforce-sites.com`
+- Hosted at: `https://in1749020246754-dev-ed.develop.my.salesforce-sites.com`
 
 ### 🔹 FinancingAgent
 - Receives quote handoffs and analyzes credit history.
 - Presents tailored loan options.
 - Logs the selected financing plan and generates a customer reference ID.
-- Hosted at: `https://in67890-dev-ed.develop.my.salesforce-sites.com`
+- Hosted at: `https://in1749822082981.my.salesforce-sites.com`
 
 ---
 
@@ -42,12 +42,12 @@ Agent metadata is published in [`agent-cards.json`](agent-cards.json), which inc
 Each agent exposes a public webhook via Salesforce Sites:
 
 - SmartQuotingAgent:  
-  `https://in12345-dev-ed.develop.my.salesforce-sites.com/services/apexrest/a2a/webhook`
+  `https://in1749020246754-dev-ed.develop.my.salesforce-sites.com/services/apexrest/a2a/webhook`
 
 - FinancingAgent:  
-  `https://in67890-dev-ed.develop.my.salesforce-sites.com/services/apexrest/a2a/webhook`
+  `https://in1749822082981.my.salesforce-sites.com/services/apexrest/a2a/webhook`
 
-Apex classes handle incoming A2A callbacks and log them into custom objects.
+Apex classes handle incoming A2A callbacks.
 
 ---
 
