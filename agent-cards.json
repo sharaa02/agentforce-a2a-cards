@@ -11,7 +11,7 @@
       },
       "routes": [
         {
-          "contains": ["finance", "loan", "payment"],
+          "contains": ["financing", "finance", "loan", "payment"],
           "next": ["FinancingAgent"]
         },
         {
