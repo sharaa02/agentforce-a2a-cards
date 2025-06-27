@@ -1,0 +1,30 @@
+{
+  "agents": [
+    {
+      "name": "SmartQuotingAgent",
+      "description": "An intelligent HVAC quoting assistant that evaluates customer profiles—including purchase history, LTV, and sentiment—to determine quote-readiness. If the opportunity is promising, it recommends environmentally conscious and budget-aligned HVAC solutions. Once the quote is created, the agent seamlessly offers financing handoff to a dedicated financial assistant.",
+      "url": "https://in1749020246754-dev-ed.develop.my.salesforce-sites.com",
+      "capabilities": ["task/send", "task/status"],
+      "authentication": {
+        "type": "none"
+      },
+      "modality": ["json", "text"],
+      "callback": {
+        "webhook_url": "https://in1749020246754-dev-ed.develop.my.salesforce-sites.com/services/apexrest/a2a/webhook"
+      }
+    },
+    {
+      "name": "FinancingAgent",
+      "description": "A financial servicing agent that receives quote handoffs and analyzes customer credit history to offer tailored loan options. Once a plan is selected, it logs the financing request and generates a customer reference for future processing after quote acceptance.",
+      "url": "https://in1749822082981.my.salesforce-sites.com",
+      "capabilities": ["task/send", "task/status"],
+      "authentication": {
+        "type": "none"
+      },
+      "modality": ["json", "text"],
+      "callback": {
+        "webhook_url": "https://in1749822082981.my.salesforce-sites.com/services/apexrest/a2a/webhook"
+      }
+    }
+  ]
+}
