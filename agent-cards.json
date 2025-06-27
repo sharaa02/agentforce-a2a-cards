@@ -3,11 +3,11 @@
     {
       "name": "SmartQuotingAgent",
       "description": "An intelligent quoting assistant that evaluates customer profiles and generates HVAC quotes.",
-      "url": "https://in12345-dev-ed.develop.my.salesforce-sites.com",
+      "url": "https://in1749020246754-dev-ed.develop.my.salesforce-sites.com",
       "capabilities": ["task/send", "task/status"],
       "modality": ["json", "text"],
       "callback": {
-        "webhook_url": "https://in12345-dev-ed.develop.my.salesforce-sites.com/services/apexrest/a2a/webhook"
+        "webhook_url": "https://in1749020246754-dev-ed.develop.my.salesforce-sites.com/services/apexrest/a2a/webhook"
       },
       "routes": [
         {
@@ -23,11 +23,11 @@
     {
       "name": "FinancingAgent",
       "description": "Analyzes credit history and offers tailored financing options.",
-      "url": "https://in67890-dev-ed.develop.my.salesforce-sites.com",
+      "url": "https://in1749822082981.my.salesforce-sites.com",
       "capabilities": ["task/send", "task/status"],
       "modality": ["json", "text"],
       "callback": {
-        "webhook_url": "https://in67890-dev-ed.develop.my.salesforce-sites.com/services/apexrest/a2a/webhook"
+        "webhook_url": "https://in1749822082981.my.salesforce-sites.com/services/apexrest/a2a/webhook"
       },
       "routes": []
     }
