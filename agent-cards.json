@@ -7,7 +7,7 @@
       "capabilities": ["task/send", "task/status"],
       "modality": ["json", "text"],
       "callback": {
-        "webhook_url": "https://in1749020246754-dev-ed.develop.my.salesforce-sites.com/services/apexrest/a2a/webhook"
+        "webhook_url": "https://in1749020246754-dev-ed.develop.my.salesforce-sites.com/services/apexrest//agentforce/quotingwebhook"
       },
       "routes": [
         {
@@ -27,7 +27,7 @@
       "capabilities": ["task/send", "task/status"],
       "modality": ["json", "text"],
       "callback": {
-        "webhook_url": "https://in1749822082981.my.salesforce-sites.com/services/apexrest/a2a/webhook"
+        "webhook_url": "https://in1749822082981.my.salesforce-sites.com/services/apexrest/agentforce/financingwebhook"
       },
       "routes": []
     }
