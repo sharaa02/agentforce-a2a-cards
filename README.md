@@ -42,10 +42,10 @@ Agent metadata is published in [`agent-cards.json`](agent-cards.json), which inc
 Each agent exposes a public webhook via Salesforce Sites:
 
 - SmartQuotingAgent:  
-  `https://in1749020246754-dev-ed.develop.my.salesforce-sites.com/services/apexrest/a2a/webhook`
+  `https://in1749020246754-dev-ed.develop.my.salesforce-sites.com/services/apexrest/agentforce/quotingwebhook`
 
 - FinancingAgent:  
-  `https://in1749822082981.my.salesforce-sites.com/services/apexrest/a2a/webhook`
+  `https://in1749822082981.my.salesforce-sites.com/services/apexrest/agentforce/financingwebhook`
 
 Apex classes handle incoming A2A callbacks.
 
