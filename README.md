@@ -63,7 +63,6 @@ Apex classes handle incoming A2A callbacks.
 
 - View the [Agent Cards](agent-cards.json)
 - Explore the [Landing Page]([agent-cards.json](https://sharaa02.github.io/agentforce-a2a-cards/))
-- Explore the [Landing Page]([[https://<your-username>.github.io/<repo-name>/](https://sharaa02.github.io/agentforce-a2a-cards/)])
 - Use Postman to simulate A2A requests
 
 ---
