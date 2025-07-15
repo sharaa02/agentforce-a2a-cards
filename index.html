@@ -1,47 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HVAC Quoting & Financing Agents</title>
-  <style>
-    body { font-family: Arial, sans-serif; background: #f8f8f8; margin: 0; padding: 2rem; }
-    h1 { color: #333; }
-    .agent-card {
-      background: #fff;
-      border-radius: 8px;
-      padding: 1.5rem;
-      margin-bottom: 1rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .agent-name { font-size: 1.2rem; color: #0070d2; margin-bottom: 0.5rem; }
-    .agent-url { font-size: 0.9rem; color: #666; margin-bottom: 0.75rem; }
-    .agent-description { color: #444; }
-    code { background: #eee; padding: 2px 4px; border-radius: 4px; }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>HVAC Quoting & Financing Agents</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f8f8f8; margin: 0; padding: 2rem; }
+        h1 { color: #333; }
+        .agent-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .agent-name { font-size: 1.2rem; color: #0070d2; margin-bottom: 0.5rem; }
+        .agent-url { font-size: 0.9rem; color: #666; margin-bottom: 0.75rem; }
+        .agent-description { color: #444; }
+        code { background: #eee; padding: 2px 4px; border-radius: 4px; }
+    </style>
 </head>
 <body>
-  <h1>🤖 HVAC AgentForce Collaboration Demo</h1>
+    <h1>🤖 HVAC AgentForce Collaboration Demo</h1>
 
-  <div class="agent-card">
-    <div class="agent-name">SmartQuotingAgent</div>
-    <div class="agent-url">Hosted at: <code>in12345-dev-ed.develop.my.salesforce-sites.com</code></div>
-    <div class="agent-description">
-      An intelligent quoting assistant for HVAC product selection. It evaluates customer profiles to determine if an opportunity should be quoted or passed to a sales expert. Recommends products based on environmental and budget preferences, then offers to route the quote to a financing agent.
-    </div>
-  </div>
+    <div id="agents-container">
+        </div>
 
-  <div class="agent-card">
-    <div class="agent-name">FinancingAgent</div>
-    <div class="agent-url">Hosted at: <code>in67890-dev-ed.develop.my.salesforce-sites.com</code></div>
-    <div class="agent-description">
-      Receives finalized quotes and offers financing options tailored to the customer's creditworthiness. Once selected, it logs the request and provides a customer reference ID to proceed post-quote acceptance.
-    </div>
-  </div>
+    <p>
+        🔗 View the raw Agent Card definitions:
+        <a href="agent-cards.json" target="_blank">agent-cards.json</a>
+    </p>
 
-  <p>
-    🔗 View the raw Agent Card definitions:  
-    <a href="agent-cards.json" target="_blank">agent-cards.json</a>
-  </p>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('agent-cards.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(agentCards => {
+                    const container = document.getElementById('agents-container');
+                    agentCards.forEach(agent => {
+                        const agentCardDiv = document.createElement('div');
+                        agentCardDiv.classList.add('agent-card');
+
+                        const nameDiv = document.createElement('div');
+                        nameDiv.classList.add('agent-name');
+                        nameDiv.textContent = agent.name;
+                        agentCardDiv.appendChild(nameDiv);
+
+                        const urlDiv = document.createElement('div');
+                        urlDiv.classList.add('agent-url');
+                        const urlCode = document.createElement('code');
+                        // Use the webhook URL from the capabilities, or a placeholder if not found
+                        const webhookUrl = agent.capabilities.find(cap => cap.type === 'task/send' || cap.type === 'task/status')?.webhookUrl || 'URL not specified';
+                        urlCode.textContent = 'Hosted at: ' + webhookUrl.replace('/services/apexrest/agentforce/quotingwebhook', '').replace('/services/apexrest/agentforce/financingwebhook', ''); // Strip the webhook path
+                        agentCardDiv.appendChild(urlDiv);
+                        urlDiv.appendChild(urlCode);
+
+
+                        const descriptionDiv = document.createElement('div');
+                        descriptionDiv.classList.add('agent-description');
+                        descriptionDiv.textContent = agent.description;
+                        agentCardDiv.appendChild(descriptionDiv);
+
+                        container.appendChild(agentCardDiv);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching or parsing agent-cards.json:', error);
+                    const container = document.getElementById('agents-container');
+                    container.innerHTML = '<p>Error loading agent information. Please check agent-cards.json.</p>';
+                });
+        });
+    </script>
 </body>
 </html>
