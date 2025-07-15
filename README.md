@@ -16,13 +16,13 @@ The agents collaborate to guide customers through HVAC product selection, quote 
 - Evaluates customer profiles (purchase history, LTV, sentiment) to determine quote-readiness.
 - Recommends HVAC products based on environmental and budget preferences.
 - Generates a quote and offers to route the customer to financing if needed.
-- Hosted at: `https://in1749020246754-dev-ed.develop.my.salesforce-sites.com`
+- Hosted at: `[https://in1749020246754-dev-ed.develop.my.salesforce-sites.com](https://in1749020246754-dev-ed.develop.my.salesforce.com/)`
 
 ### 🔹 FinancingAgent
 - Receives quote handoffs and analyzes credit history.
 - Presents tailored loan options.
 - Logs the selected financing plan and generates a customer reference ID.
-- Hosted at: `https://in1749822082981.my.salesforce-sites.com`
+- Hosted at: `[https://in1749822082981.my.salesforce-sites.com](https://in1749822082981.my.salesforce.com/)`
 
 ---
 
@@ -53,7 +53,7 @@ Apex classes handle incoming A2A callbacks.
 
 ## 🧪 Demo Flow
 
-1. SmartQuotingAgent finalizes a quote and sends a `task/send` to FinancingAgent.
+1. SmartQuotingAgent finalizes a quote and sends a `task/send` to FinancingAgent via Mulesoft (https://agentforce-hackathon-4sb3kn.5sc6y6-2.usa-e2.cloudhub.io).
 2. FinancingAgent processes the request and responds via `task/status`.
 3. SmartQuotingAgent receives the callback and displays financing options.
 
@@ -62,7 +62,7 @@ Apex classes handle incoming A2A callbacks.
 ## 🚀 Try It Out
 
 - View the [Agent Cards](agent-cards.json)
-- Explore the [Landing Page](https://<your-username>.github.io/<repo-name>/)
+- Explore the [Landing Page]([https://<your-username>.github.io/<repo-name>/](https://sharaa02.github.io/agentforce-a2a-cards/))
 - Use Postman to simulate A2A requests
 
 ---
@@ -71,11 +71,11 @@ Apex classes handle incoming A2A callbacks.
 
 - Salesforce AgentForce
 - Apex REST APIs
-- Salesforce Sites
+- Mulesoft
 - GitHub Pages
 
 ---
 
 ## 📬 Contact
 
-For questions or collaboration, reach out to [Your Name] at [your.email@example.com].
+For questions or collaboration, reach out to [Amit Sharan] at [your.email@example.com].
