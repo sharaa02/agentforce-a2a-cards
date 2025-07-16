@@ -3,78 +3,134 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>HVAC Quoting & Financing Agents</title>
+    <title>HVAC AgentForce A2A Demo</title>
     <style>
-        body { font-family: Arial, sans-serif; background: #f8f8f8; margin: 0; padding: 2rem; }
-        h1 { color: #333; }
-        .agent-card {
+        body { font-family: Arial, sans-serif; background: #f8f8f8; margin: 0; padding: 2rem; line-height: 1.6; color: #333; }
+        h1, h2, h3 { color: #333; margin-top: 1.5em; margin-bottom: 0.5em; }
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 1.8rem; border-bottom: 1px solid #eee; padding-bottom: 0.3em; }
+        h3 { font-size: 1.4rem; }
+        ul { list-style-type: disc; margin-left: 20px; }
+        code { background: #eee; padding: 2px 4px; border-radius: 4px; font-family: 'Courier New', Courier, monospace; }
+        pre code { display: block; padding: 1em; background: #eee; overflow-x: auto; }
+        hr { border: 0; height: 1px; background: #ccc; margin: 2em 0; }
+        a { color: #0070d2; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        /* Agent-specific styling (if needed for sections that resemble agents) */
+        .agent-section {
             background: #fff;
             border-radius: 8px;
             padding: 1.5rem;
             margin-bottom: 1rem;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .agent-name { font-size: 1.2rem; color: #0070d2; margin-bottom: 0.5rem; }
-        .agent-url { font-size: 0.9rem; color: #666; margin-bottom: 0.75rem; }
-        .agent-description { color: #444; }
-        code { background: #eee; padding: 2px 4px; border-radius: 4px; }
+        .agent-section h3 { margin-top: 0; color: #0070d2; }
+        .agent-section .url-text { font-size: 0.9rem; color: #666; margin-bottom: 0.75rem; }
     </style>
 </head>
 <body>
-    <h1>🤖 HVAC AgentForce Collaboration Demo</h1>
+    <h1># agentforce-a2a-cards</h1>
+    <h1>🤖 HVAC AgentForce A2A Demo</h1>
 
-    <div id="agents-container">
-        </div>
+    <p>This project demonstrates a cross-org Agent-to-Agent (A2A) interaction between two Salesforce AgentForce agents:</p>
 
-    <p>
-        🔗 View the raw Agent Card definitions:
-        <a href="agent-cards.json" target="_blank">agent-cards.json</a>
-    </p>
+    <ul>
+        <li><strong>SmartQuotingAgent</strong> (hosted in Org 1)</li>
+        <li><strong>FinancingAgent</strong> (hosted in Org 2)</li>
+    </ul>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch('agent-cards.json')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(agentCards => {
-                    const container = document.getElementById('agents-container');
-                    agentCards.forEach(agent => {
-                        const agentCardDiv = document.createElement('div');
-                        agentCardDiv.classList.add('agent-card');
+    <p>The agents collaborate to guide customers through HVAC product selection, quote generation, and financing options—using the A2A protocol and public Salesforce Sites as webhook endpoints.</p>
 
-                        const nameDiv = document.createElement('div');
-                        nameDiv.classList.add('agent-name');
-                        nameDiv.textContent = agent.name;
-                        agentCardDiv.appendChild(nameDiv);
+    <hr />
 
-                        const urlDiv = document.createElement('div');
-                        urlDiv.classList.add('agent-url');
-                        const urlCode = document.createElement('code');
-                        // Use the webhook URL from the capabilities, or a placeholder if not found
-                        const webhookUrl = agent.capabilities.find(cap => cap.type === 'task/send' || cap.type === 'task/status')?.webhookUrl || 'URL not specified';
-                        urlCode.textContent = 'Hosted at: ' + webhookUrl.replace('/services/apexrest/agentforce/quotingwebhook', '').replace('/services/apexrest/agentforce/financingwebhook', ''); // Strip the webhook path
-                        agentCardDiv.appendChild(urlDiv);
-                        urlDiv.appendChild(urlCode);
+    <h2>🧠 Agents Overview</h2>
 
+    <div class="agent-section">
+        <h3>🔹 SmartQuotingAgent</h3>
+        <ul>
+            <li>Evaluates customer profiles (purchase history, LTV, sentiment) to determine quote-readiness.</li>
+            <li>Recommends HVAC products based on environmental and budget preferences.</li>
+            <li>Generates a quote and offers to route the customer to financing if needed.</li>
+        </ul>
+        <p class="url-text">Hosted at: <code><a href="https://in1749020246754-dev-ed.develop.my.salesforce-sites.com" target="_blank">https://in1749020246754-dev-ed.develop.my.salesforce-sites.com</a></code></p>
+    </div>
 
-                        const descriptionDiv = document.createElement('div');
-                        descriptionDiv.classList.add('agent-description');
-                        descriptionDiv.textContent = agent.description;
-                        agentCardDiv.appendChild(descriptionDiv);
+    <div class="agent-section">
+        <h3>🔹 FinancingAgent</h3>
+        <ul>
+            <li>Receives quote handoffs and analyzes credit history.</li>
+            <li>Presents tailored loan options.</li>
+            <li>Logs the selected financing plan and generates a customer reference ID.</li>
+        </ul>
+        <p class="url-text">Hosted at: <code><a href="https://in1749822082981.my.salesforce-sites.com" target="_blank">https://in1749822082981.my.salesforce-sites.com</a></code></p>
+    </div>
 
-                        container.appendChild(agentCardDiv);
-                    });
-                })
-                .catch(error => {
-                    console.error('Error fetching or parsing agent-cards.json:', error);
-                    const container = document.getElementById('agents-container');
-                    container.innerHTML = '<p>Error loading agent information. Please check agent-cards.json.</p>';
-                });
-        });
-    </script>
+    <hr />
+
+    <h2>🔗 Agent Cards</h2>
+
+    <p>Agent metadata is published in <code><a href="agent-cards.json" target="_blank">agent-cards.json</a></code>, which includes:</p>
+
+    <ul>
+        <li>Agent name and description</li>
+        <li>Capabilities (<code>task/send</code>, <code>task/status</code>)</li>
+        <li>Webhook callback URLs</li>
+        <li>Authentication type (none for demo)</li>
+    </ul>
+
+    <hr />
+
+    <h2>🛠️ Webhook Setup</h2>
+
+    <p>Each agent exposes a public webhook via Salesforce Sites:</p>
+
+    <ul>
+        <li>SmartQuotingAgent:
+            <code>https://in1749020246754-dev-ed.develop.my.salesforce-sites.com/services/apexrest/agentforce/quotingwebhook</code>
+        </li>
+        <li>FinancingAgent:
+            <code>https://in1749822082981.my.salesforce-sites.com/services/apexrest/agentforce/financingwebhook</code>
+        </li>
+    </ul>
+
+    <p>Apex classes handle incoming A2A callbacks.</p>
+
+    <hr />
+
+    <h2>🧪 Demo Flow</h2>
+
+    <ol>
+        <li>SmartQuotingAgent finalizes a quote and sends a <code>task/send</code> to FinancingAgent via Mulesoft (<a href="https://agentforce-hackathon-4sb3kn.5sc6y6-2.usa-e2.cloudhub.io" target="_blank">https://agentforce-hackathon-4sb3kn.5sc6y6-2.usa-e2.cloudhub.io</a>).</li>
+        <li>FinancingAgent processes the request and responds via <code>task/status</code>.</li>
+        <li>SmartQuotingAgent receives the callback and displays financing options.</li>
+    </ol>
+
+    <hr />
+
+    <h2>🚀 Try It Out</h2>
+
+    <ul>
+        <li>View the <a href="agent-cards.json" target="_blank">Agent Cards</a></li>
+        <li>Explore the <a href="https://sharaa02.github.io/agentforce-a2a-cards/" target="_blank">Landing Page</a></li>
+        <li>Use Postman to simulate A2A requests</li>
+    </ul>
+
+    <hr />
+
+    <h2>🏁 Built With</h2>
+
+    <ul>
+        <li>Salesforce AgentForce</li>
+        <li>Apex REST APIs</li>
+        <li>Mulesoft</li>
+        <li>GitHub Pages</li>
+    </ul>
+
+    <hr />
+
+    <h2>📬 Contact</h2>
+
+    <p>For questions or collaboration, reach out to [Neural Netwits] at [connect@neuralnetwits.com].</p>
+
 </body>
 </html>
