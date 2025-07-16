@@ -6,7 +6,7 @@
     <title>HVAC AgentForce A2A Demo</title>
     <style>
         body { font-family: Arial, sans-serif; background: #f8f8f8; margin: 0; padding: 2rem; line-height: 1.6; color: #333; }
-        h1, h2, h3 { color: #333; margin-top: 1.5em; margin-bottom: 0.5em; }
+        h1, h2, h3 { color: #333; margin-top: 0.5em; margin-bottom: 0.5em; }
         h1 { font-size: 2.5rem; }
         h2 { font-size: 1.8rem; border-bottom: 1px solid #eee; padding-bottom: 0.3em; }
         h3 { font-size: 1.4rem; }
@@ -29,7 +29,6 @@
     </style>
 </head>
 <body>
-    <h1># agentforce-a2a-cards</h1>
     <h1>🤖 HVAC AgentForce A2A Demo</h1>
 
     <p>This project demonstrates a cross-org Agent-to-Agent (A2A) interaction between two Salesforce AgentForce agents:</p>
@@ -39,7 +38,7 @@
         <li><strong>FinancingAgent</strong> (hosted in Org 2)</li>
     </ul>
 
-    <p>The agents collaborate to guide customers through HVAC product selection, quote generation, and financing options—using the A2A protocol and public Salesforce Sites as webhook endpoints.</p>
+    <p>The agents collaborate to guide customers through HVAC product selection, quote generation, and financing options.</p>
 
     <hr />
 
@@ -52,7 +51,7 @@
             <li>Recommends HVAC products based on environmental and budget preferences.</li>
             <li>Generates a quote and offers to route the customer to financing if needed.</li>
         </ul>
-        <p class="url-text">Hosted at: <code><a href="https://in1749020246754-dev-ed.develop.my.salesforce-sites.com" target="_blank">https://in1749020246754-dev-ed.develop.my.salesforce-sites.com</a></code></p>
+        <p class="url-text">Hosted at: <code><a href="https://in1749020246754-dev-ed.develop.my.salesforce.com/" target="_blank">https://in1749020246754-dev-ed.develop.my.salesforce-sites.com</a></code></p>
     </div>
 
     <div class="agent-section">
@@ -62,7 +61,7 @@
             <li>Presents tailored loan options.</li>
             <li>Logs the selected financing plan and generates a customer reference ID.</li>
         </ul>
-        <p class="url-text">Hosted at: <code><a href="https://in1749822082981.my.salesforce-sites.com" target="_blank">https://in1749822082981.my.salesforce-sites.com</a></code></p>
+        <p class="url-text">Hosted at: <code><a href="https://in1749822082981.my.salesforce.com/" target="_blank">https://in1749822082981.my.salesforce-sites.com</a></code></p>
     </div>
 
     <hr />
@@ -82,14 +81,17 @@
 
     <h2>🛠️ Webhook Setup</h2>
 
-    <p>Each agent exposes a public webhook via Salesforce Sites:</p>
-
+    <p>Each agent exposes a public webhook via Mulesoft:</p>
+    
     <ul>
+        <li>Nulesoft Cloudhub:
+            <code>https://agentforce-hackathon-4sb3kn.5sc6y6-2.usa-e2.cloudhub.io</code>
+        </li>
         <li>SmartQuotingAgent:
-            <code>https://in1749020246754-dev-ed.develop.my.salesforce-sites.com/services/apexrest/agentforce/quotingwebhook</code>
+            <code>https://in1749020246754-dev-ed.develop.my.salesforce.com//services/apexrest/agentforce/quotingwebhook</code>
         </li>
         <li>FinancingAgent:
-            <code>https://in1749822082981.my.salesforce-sites.com/services/apexrest/agentforce/financingwebhook</code>
+            <code>https://in1749822082981.my.salesforce.com/services/apexrest/agentforce/financingwebhook</code>
         </li>
     </ul>
 
@@ -100,7 +102,7 @@
     <h2>🧪 Demo Flow</h2>
 
     <ol>
-        <li>SmartQuotingAgent finalizes a quote and sends a <code>task/send</code> to FinancingAgent via Mulesoft (<a href="https://agentforce-hackathon-4sb3kn.5sc6y6-2.usa-e2.cloudhub.io" target="_blank">https://agentforce-hackathon-4sb3kn.5sc6y6-2.usa-e2.cloudhub.io</a>).</li>
+        <li>SmartQuotingAgent finalizes a quote and sends a <code>task/send</code> to FinancingAgent via Mulesoft (<a href="https://agentforce-hackathon-4sb3kn.5sc6y6-2.usa-e2.cloudhub.io/financing-proxy" target="_blank">https://agentforce-hackathon-4sb3kn.5sc6y6-2.usa-e2.cloudhub.io</a>).</li>
         <li>FinancingAgent processes the request and responds via <code>task/status</code>.</li>
         <li>SmartQuotingAgent receives the callback and displays financing options.</li>
     </ol>
