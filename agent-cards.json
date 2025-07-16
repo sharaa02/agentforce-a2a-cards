@@ -21,7 +21,7 @@
       "Id": "0XxKY000000PzyB0AS",
       "name": "FinancingAgent",
       "description": "Analyzes credit history and offers tailored financing options.",
-      "url": "https://in1749822082981.my.salesforce-sites.com",
+      "url": "https://in1749822082981.my.salesforce.com",
       "capabilities": ["task/send", "task/status"],
       "modality": ["json", "text"],
       "callback": {
