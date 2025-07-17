@@ -1,38 +1,85 @@
 {
-  "agents": [
-    {
-      "Id": "0XxHo000000d9bTKAQ",
-      "name": "SmartQuotingAgent",
-      "description": "An intelligent quoting assistant that evaluates customer profiles and generates HVAC quotes.",
-      "url": "https://in1749020246754-dev-ed.develop.my.salesforce.com",
-      "capabilities": ["task/send", "task/status"],
-      "modality": ["json", "text"],
-      "callback": {
-        "webhook_url": "https://in1749020246754-dev-ed.develop.my.salesforce.com/services/apexrest/agentforce/quotingwebhook"
-      },
-      "routes": [
+    "agents": [
         {
-          "contains": ["quoting", "offer", "quote"],
-          "next": []
-        }
-      ]
-    },
-    {
-      "Id": "0XxKY000000PzyB0AS",
-      "name": "FinancingAgent",
-      "description": "Analyzes credit history and offers tailored financing options.",
-      "url": "https://in1749822082981.my.salesforce.com",
-      "capabilities": ["task/send", "task/status"],
-      "modality": ["json", "text"],
-      "callback": {
-        "webhook_url": "https://agentforce-hackathon-4sb3kn.5sc6y6-2.usa-e2.cloudhub.io/financing-proxy"
-      },
-      "routes": [
+            "Id": "0XxHo000000d9bTKAQ",
+            "name": "SmartQuotingAgent",
+            "description": "An intelligent quoting assistant that evaluates customer profiles and generates HVAC quotes.",
+            "url": "https://in1749020246754-dev-ed.develop.my.salesforce.com",
+            "capabilities": [ "task/send", "task/status"],
+            "modality": ["json", "text"],
+            "callback": {
+                "webhook_url": "https://in1749020246754-dev-ed.develop.my.salesforce.com/services/apexrest/agentforce/quotingwebhook"
+            },
+            "routes": [
+                {
+                    "contains": ["quoting", "offer","quote"],
+                    "next": []
+                }
+            ],
+            "payload": {
+                "promptDetails": {
+                    "type": "text",
+                    "utterance": "Create Quote for the Opportunity"
+                },
+                "context": {
+                    "customerDetails": {
+                        "accountId": "001KY00000CTvceYAD",
+                        "accountNumber": "A45475905"
+                    },
+                    "opportunityDetails": {
+                        "opportunityId": "006Ho00000XeDCRIA3",
+                        "premiseType": "Large Commercial"
+                    },
+                    "systemInfo": {
+                        "sourceOrgId": "00DKY000008hpc2"
+                    }
+                }
+            }
+        },
         {
-          "contains": ["financing", "finance", "loan", "payment"],
-          "next": []
+            "Id": "0XxKY000000PzyB0AS",
+            "name": "FinancingAgent",
+            "description": "Analyzes credit history and offers tailored financing options.",
+            "url": "https://in1749822082981.my.salesforce.com",
+            "capabilities": [
+                "task/send",
+                "task/status"
+            ],
+            "modality": [
+                "json",
+                "text"
+            ],
+            "callback": {
+                "webhook_url": "https://agentforce-hackathon-4sb3kn.5sc6y6-2.usa-e2.cloudhub.io/financing-proxy"
+            },
+            "routes": [
+                {
+                    "contains": ["financing", "finance", "loan", "payment"],
+                    "next": []
+                }
+            ],
+          "payload": {
+                "promptDetails": {
+                    "type": "text",
+                    "utterance": "Provide finance option for A45475905@3000"
+                },
+                "context": {
+                    "customerDetails": {
+                        "accountId": "001KY00000CTvceYAD",
+                        "accountNumber": "A45475905"
+                    },
+                    "quoteDetails": {
+                        "quoteId": "a53KY000000PpRFYA0",
+                        "quoteNumber": "Q-00037",
+                        "quoteAmount": 3000
+                    },
+                    "systemInfo": {
+                        "sourceOrgId": "00DKY000008hpc2",
+                        "agentId": "0XxKY000000PzyB0AS",
+                        "agentSessionId": ""
+                    }
+                }
+            }
         }
-      ]
-    }
-  ]
+    ]
 }
