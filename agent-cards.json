@@ -2,7 +2,7 @@
     "agents": [
         {
             "Id": "0XxHo000000d9bTKAQ",
-            "name": "SmartQuotingAgent",
+            "name": "Smart Quoting Agent",
             "description": "An intelligent quoting assistant that evaluates customer profiles and generates HVAC quotes.",
             "url": "https://in1749020246754-dev-ed.develop.my.salesforce.com",
             "capabilities": [ "task/send", "task/status"],
@@ -38,7 +38,7 @@
         },
         {
             "Id": "0XxKY000000PzyB0AS",
-            "name": "FinancingAgent",
+            "name": "Finance Agent",
             "description": "Analyzes credit history and offers tailored financing options.",
             "url": "https://in1749822082981.my.salesforce.com",
             "capabilities": [
