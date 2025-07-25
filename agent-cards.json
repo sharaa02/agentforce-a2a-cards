@@ -3,7 +3,7 @@
         {
             "Id": "0XxHo000000d9bTKAQ",
             "name": "Smart Quoting Agent",
-            "description": "An intelligent quoting assistant that evaluates customer profiles and generates HVAC quotes.",
+            "description": "Domain-specific agent for HVAC quoting. Generates pricing estimates and formal quotes based on Opportunity and Customer profiles. Accepts opportunityId, premiseType, and account details. Returns quoteId and quote amount for downstream processing like financing or approvals.",
             "url": "https://in1749020246754-dev-ed.develop.my.salesforce.com",
             "capabilities": [ "task/send", "task/status"],
             "modality": ["json", "text"],
@@ -40,7 +40,7 @@
         {
             "Id": "0XxKY000000PzyB0AS",
             "name": "Finance Agent",
-            "description": "Analyzes credit history and offers tailored financing options.",
+            "description": "Provides financing evaluations for HVAC quotes. Analyzes customer credit context and quote amounts to generate tailored payment or loan options. Requires customer and quote details, and responds with available financing plans.",
             "url": "https://in1749822082981.my.salesforce.com",
             "capabilities": [
                 "task/send",
